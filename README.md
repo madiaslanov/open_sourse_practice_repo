@@ -1,2 +1,2 @@
 # open_sourse_practice_repo
-hello
+This is a repository for practicing the GitHub workflow
