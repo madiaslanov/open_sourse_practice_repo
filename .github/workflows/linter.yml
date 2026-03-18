@@ -1,0 +1,35 @@
+# .github/workflows/linter.yml
+
+name: Linter Check # Название воркфлоу, которое будет отображаться в GitHub
+
+# Триггеры: запускать при пуше в main или при создании/обновлении pull request
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint: # Название задачи (job)
+    name: Run linter # Отображаемое имя задачи
+    runs-on: ubuntu-latest # На какой операционной системе запускать
+
+    steps:
+      # 1. Клонируем репозиторий, чтобы получить доступ к коду
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Устанавливаем Node.js нужной версии
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Укажите вашу версию Node.js
+          cache: 'npm' # Кэшируем зависимости для ускорения
+
+      # 3. Устанавливаем зависимости проекта
+      - name: Install dependencies
+        run: npm ci # 'ci' быстрее и надежнее чем 'install' для CI/CD
+
+      # 4. Запускаем линтер
+      - name: Run ESLint
+        run: npm run lint
