@@ -1,0 +1,12 @@
+
+version: 2
+updates:
+  # Настройка для npm (файл package.json)
+  - package-ecosystem: "npm"
+    directory: "/" # Где искать package.json. "/" - корень проекта.
+    schedule:
+      interval: "weekly" # Как часто проверять: "daily", "weekly", "monthly"
+    commit-message:
+      # Настройка сообщений коммитов
+      prefix: "deps"
+      include: "scope"
