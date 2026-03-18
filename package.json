@@ -1,4 +1,5 @@
 // package.json
 "scripts": {
   "lint": "eslint ."
+   "test": "jest"
 }
